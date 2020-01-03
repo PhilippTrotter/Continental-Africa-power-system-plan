@@ -1,0 +1,61 @@
+/*********************************************
+ * OPL 12.6.3.0 Data
+ * Author: Philipp Trotter
+ * Creation Date: 14 Jul 2016 at 11:58:19
+ *********************************************/
+
+
+maxPotential2030 = 0.25;
+fossilRestriction = 0.25;
+maxPoliticalRisk = 0.5;
+
+//establish Excel connection
+SheetConnection sheet("PoliticsOfElectrificationSSADataAdjComplete.xlsx");
+
+
+//load indices
+SupplyCountry from SheetRead(sheet,"'indices'!B4:B50");
+DemandCountry from SheetRead(sheet,"'indices'!E4:E49");
+Technology from SheetRead(sheet,"'indices'!H4:H11");
+Year from SheetRead(sheet,"'indices'!K4:K7");
+
+
+//load parameters
+supplyInput from SheetRead(sheet,"'adjSupply'!D2:D1505");
+demandInput from SheetRead(sheet,"'adjDemand'!C2:C185");
+demandTotal from SheetRead(sheet,"'adjDemandTotal'!C4:C7");
+gencostInput from SheetRead(sheet,"'adjGencost'!E2:E69185");
+transcostInput from SheetRead(sheet,"'adjTranscost'!E2:E69185");
+
+Instability from SheetRead(sheet,"'Politics'!B2:B48");
+Corruption from SheetRead(sheet,"'Politics'!C2:C48");
+InstitutionalIssues from SheetRead(sheet,"'Politics'!F2:F48");
+EnergySecurity from SheetRead(sheet,"'Politics'!C57:C102");
+LandAccess from SheetRead(sheet,"'Politics'!J2:J48");
+ExtSupplyCommitment from SheetRead(sheet,"'Politics'!H2:H48");
+ExtDemandCommitment from SheetRead(sheet,"'Politics'!B57:B102");
+
+
+
+
+//return model result
+supplyLong to SheetWrite(sheet,"ResultPolitics!E2:E69185");
+quantityLong to SheetWrite(sheet,"ResultPolitics!F2:F69185");
+gencostInput to SheetWrite(sheet,"ResultPolitics!I2:I69185");
+transcostInput to SheetWrite(sheet,"ResultPolitics!K2:K69185");
+
+maxPoliticalRisk to SheetWrite(sheet,"ResultPoliticalRisk!B8");
+
+PR1ExternalPressure to SheetWrite(sheet,"ResultPoliticalRisk!B2");
+PR1ExternalPressureSC to SheetWrite(sheet,"ResultPoliticalRisk!F13:F59");
+PR1ExternalPressureDC to SheetWrite(sheet,"ResultPoliticalRisk!I13:I58");
+PR2EnergySecurity to SheetWrite(sheet,"ResultPoliticalRisk!B3");
+PR2EnergySecurityDC to SheetWrite(sheet,"ResultPoliticalRisk!H13:H58");
+PR3InstitutionalIssues to SheetWrite(sheet,"ResultPoliticalRisk!B4");
+PR3InstitutionalIssuesSC to SheetWrite(sheet,"ResultPoliticalRisk!C13:C59");
+PR4Instability to SheetWrite(sheet,"ResultPoliticalRisk!B5");
+PR4InstabilitySC to SheetWrite(sheet,"ResultPoliticalRisk!B13:B59");
+PR5Corruption to SheetWrite(sheet,"ResultPoliticalRisk!B6");
+PR5CorruptionSC to SheetWrite(sheet,"ResultPoliticalRisk!D13:D59");
+PR6LandAccess to SheetWrite(sheet,"ResultPoliticalRisk!B7");
+PR6LandAccessSC to SheetWrite(sheet,"ResultPoliticalRisk!E13:E59");

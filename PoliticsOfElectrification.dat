@@ -1,0 +1,32 @@
+/*********************************************
+ * OPL 12.6.3.0 Data
+ * Author: Philipp Trotter
+ * Creation Date: 14 Jul 2016 at 11:58:19
+ *********************************************/
+
+
+
+//load supply data
+SheetConnection sheet("allDataSanoh.xlsx");
+SupplyInd from SheetRead(sheet,"'supply'!A2:A646");
+supply from SheetRead(sheet,"'supply'!B2:B646");
+supplyRed from SheetRead(sheet,"'supplyRed'!B2:B646");
+
+//load demand data
+DemandInd from SheetRead(sheet,"'demand'!A2:A231");
+demand from SheetRead(sheet,"'demand'!B2:B231");
+
+//load gencost data
+gencost from SheetRead(sheet,"'gencost'!B2:HW646");
+
+//load transcost data
+transcost from SheetRead(sheet,"'transcost'!B2:HW646");
+
+//load matrix data
+matrix from SheetRead(sheet,"'matrice'!B2:HW646");
+
+
+
+
+quantity to SheetWrite(sheet,"RESULTRed!H2:IC646");
+supplyRed to SheetWrite(sheet,"supplyRed!E2:E646");
